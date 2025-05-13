@@ -8,10 +8,12 @@ import collections
 app = Flask(__name__)
 mood_entries = []  # Store mood logs here
 
+# Home page
 @app.route('/')
 def home():
     return render_template('index.html')
 
+# Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -23,15 +25,17 @@ def login():
             return render_template('login.html', error="Invalid credentials")
     return render_template('login.html')
 
+# Signup page
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        print(f"New user signed up: {email} ({password})")  # Dummy print
-        return redirect(url_for('dashboard'))  # Redirect to dashboard
+        print(f"New user signed up: {email} ({password})")
+        return redirect(url_for('dashboard'))
     return render_template('signup.html')
 
+# Other pages
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
@@ -56,7 +60,7 @@ def emergency():
 def profile():
     return render_template('profile.html')
 
-# ✅ Updated Chat API Route using environment variable key
+# ✅ Chatbot API using environment key
 @app.route('/api/chat', methods=['POST'])
 def chat_api():
     user_input = request.json.get("message")
@@ -68,7 +72,7 @@ def chat_api():
 
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "https://mindmate-hy46.onrender.com",
+        "HTTP-Referer": "https://mindmate-hy46.onrender.com",  # Change to your deployed URL
         "X-Title": "MindMate",
         "Content-Type": "application/json"
     }
@@ -116,37 +120,38 @@ def save_mood():
     })
     return jsonify({"message": "Mood saved successfully"})
 
-# ✅ Return Mood Data for Dashboard/Insights
+# ✅ Return Mood Data
 @app.route('/api/mood-data')
 def mood_data():
     dist = collections.Counter(e['mood'] for e in mood_entries)
-
-    rating_map = {'Great':5, 'Good':4, 'Okay':3, 'Bad':2, 'Terrible':1}
+    rating_map = {'Great': 5, 'Good': 4, 'Okay': 3, 'Bad': 2, 'Terrible': 1}
     today = datetime.now().date()
     weekly = {}
     for i in range(6, -1, -1):
         day = today - timedelta(days=i)
         daily = [rating_map[e['mood']] for e in mood_entries if e['date'].date() == day]
-        weekly[day.strftime('%a')] = round(sum(daily)/len(daily), 1) if daily else 0
+        weekly[day.strftime('%a')] = round(sum(daily) / len(daily), 1) if daily else 0
 
     return jsonify({
         "moodDistribution": dist,
         "weeklyTrends": weekly
     })
 
+# ✅ Clear Mood Entries
 @app.route('/api/clear-mood', methods=['POST'])
 def clear_mood_entries():
     global mood_entries
     mood_entries = []
     return jsonify({"status": "success", "message": "All mood entries cleared."})
 
+# ✅ Delete Account
 @app.route('/api/delete-account', methods=['POST'])
 def delete_account():
     global mood_entries
     mood_entries = []
     return jsonify({"status": "success", "message": "Account and data deleted."})
 
-# ✅ Render-compatible run block
+# ✅ Start app on proper port for Render
 if __name__ == '__main__':
     print("✅ Flask app is running...")
     port = int(os.environ.get("PORT", 5000))
