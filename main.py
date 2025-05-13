@@ -129,20 +129,24 @@ def mood_data():
         "moodDistribution": dist,
         "weeklyTrends": weekly
     })
-    
+
 @app.route('/api/clear-mood', methods=['POST'])
 def clear_mood_entries():
-    global mood_history
-    mood_history = []
+    global mood_entries
+    mood_entries = []
     return jsonify({"status": "success", "message": "All mood entries cleared."})
 
 @app.route('/api/delete-account', methods=['POST'])
 def delete_account():
-    # You can expand this to remove user data, but here it's a placeholder
-    global mood_history
-    mood_history = []
+    global mood_entries
+    mood_entries = []
     return jsonify({"status": "success", "message": "Account and data deleted."})
+
 
 if __name__ == '__main__':
     print("✅ Flask app is running...")
-    app.run(debug=True, port=5001)
+
+    import os
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
+
