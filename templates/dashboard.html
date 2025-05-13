@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Dashboard – MindMate{% endblock %}
+
+{% block content %}
+  <!-- 👋 Welcome Section -->
+  <h2 class="text-center mb-4">👋 Welcome to Your MindMate Dashboard</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <h5>🗣️ Talk to AI Chatbot</h5>
+        <p>Get mental support or talk through your day.</p>
+        <a href="/chat" class="btn btn-outline-primary">Start Chat</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <h5>📅 Track Your Mood</h5>
+        <p>Log how you're feeling daily in seconds.</p>
+        <a href="/mood-tracker" class="btn btn-outline-success">Open Mood Tracker</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-4">
+        <h5>📈 View Insights</h5>
+        <p>See how your mood has changed over time.</p>
+        <a href="/insights" class="btn btn-outline-warning">View Insights</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚨 Emergency Panel -->
+  <div class="card bg-danger text-white text-center p-4 mb-5">
+    <h5>🚨 Need Help?</h5>
+    <p>Find emergency contacts or immediate support.</p>
+    <a href="/emergency" class="btn btn-light">Emergency Page</a>
+  </div>
+
+  <!-- 🎧 Guided Meditation Videos -->
+  <div class="mb-5">
+    <h4 class="text-white mb-3">🎧 Guided Meditation Videos</h4>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card">
+          <iframe class="w-100" height="250" src="https://www.youtube.com/embed/inpok4MKVLM" title="5-Minute Mindfulness Meditation" allowfullscreen></iframe>
+          <div class="p-3">
+            <strong>5-Minute Mindfulness Meditation</strong><br>
+            <a href="https://youtu.be/inpok4MKVLM" target="_blank">Watch on YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <iframe class="w-100" height="250" src="https://www.youtube.com/embed/O-6f5wQXSu8" title="Breathing Meditation for Anxiety" allowfullscreen></iframe>
+          <div class="p-3">
+            <strong>Breathing Meditation for Anxiety</strong><br>
+            <a href="https://youtu.be/O-6f5wQXSu8" target="_blank">Watch on YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🌬️ Breathing Exercises -->
+  <div class="mb-5">
+    <h4 class="text-white mb-3">🌬️ Breathing Exercises</h4>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>🔵 4-7-8 Breathing</h6>
+          <p>Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times.</p>
+          <ol>
+            <li>Inhale (4 seconds)</li>
+            <li>Hold (7 seconds)</li>
+            <li>Exhale (8 seconds)</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>🔵 Box Breathing</h6>
+          <p>Inhale-hold-exhale-hold for 4 seconds each. Repeat 4 times.</p>
+          <ol>
+            <li>Inhale (4s)</li>
+            <li>Hold (4s)</li>
+            <li>Exhale (4s)</li>
+            <li>Hold (4s)</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>🔵 Alternate Nostril Breathing</h6>
+          <p>Alternate breathing through one nostril at a time to calm your mind.</p>
+          <ol>
+            <li>Close right nostril, inhale left</li>
+            <li>Close left nostril, exhale right</li>
+            <li>Inhale right</li>
+            <li>Close right, exhale left</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧘 Relaxation Techniques -->
+  <div class="mb-5">
+    <h4 class="text-white mb-3">🧘 Relaxation Techniques</h4>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>5-4-3-2-1 Grounding</h6>
+          <p>Name 5 things you see, 4 you touch, 3 you hear, 2 you smell, 1 you taste.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>Progressive Muscle Relaxation</h6>
+          <p>Tense and relax each muscle group from feet to face.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>Mindful Observation</h6>
+          <p>Pick an object and observe it for 5 minutes — color, shape, and texture.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>🌿 Nature Connection</h6>
+          <p>Spend 10 minutes outside to lower stress hormones and improve mood.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h6>📴 Digital Detox</h6>
+          <p>Take a break from screens for 30 minutes before sleep for better relaxation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📚 Final Tip -->
+  <div class="card p-4 bg-dark text-white">
+    <h5>💡 Did You Know?</h5>
+    <p>Regular meditation and relaxation can reduce stress hormones like cortisol by up to 30% and improve focus and academic performance.</p>
+  </div>
+{% endblock %}

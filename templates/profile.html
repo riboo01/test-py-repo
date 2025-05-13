@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Profile – MindMate{% endblock %}
+
+{% block content %}
+<style>
+  .card {
+    background-color: #1f2937;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    color: #f8f9fa;
+  }
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  .btn-outline-light, .btn-danger {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .form-check-label,
+  .small,
+  .text-muted {
+    color: #e2e8f0 !important;
+  }
+  h6 {
+    color: #93c5fd;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row g-4">
+    <!-- Personal Info -->
+    <div class="col-md-4">
+      <div class="card text-center">
+        <img src="https://i.pravatar.cc/100?img=32" alt="User Avatar" class="profile-img mx-auto">
+        <h5 class="mb-1 text-light">Test User</h5>
+        <p class="text-muted small">khanribon000@gmail.com</p>
+        <button class="btn btn-outline-light">Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- Stats & Settings -->
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <h6 class="mb-3">📊 Your Stats</h6>
+        <p class="mb-1 text-light"><strong>Total Mood Entries:</strong> 1</p>
+        <p class="mb-1 text-light"><strong>Account Created:</strong> May 15, 2023</p>
+        <p class="mb-0 text-light"><strong>Last Login:</strong> Today</p>
+      </div>
+
+      <div class="card">
+        <h6 class="mb-3">⚙️ App Settings</h6>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" checked>
+          <label class="form-check-label text-light">Notifications</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" checked>
+          <label class="form-check-label text-light">Data Privacy</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Management -->
+    <div class="col-md-4">
+      <div class="card text-center">
+        <h6 class="text-danger mb-3">⚠️ Data Management</h6>
+        <button class="btn btn-outline-light" onclick="clearMoodEntries()">Delete All Mood Entries</button>
+        <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        <hr>
+        <button class="btn btn-secondary">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function clearMoodEntries() {
+    fetch('/api/clear-mood', { method: 'POST' })
+      .then(res => res.json())
+      .then(data => alert(data.message))
+      .catch(() => alert('Failed to clear entries.'));
+  }
+
+  function deleteAccount() {
+    fetch('/api/delete-account', { method: 'POST' })
+      .then(res => res.json())
+      .then(data => alert(data.message))
+      .catch(() => alert('Failed to delete account.'));
+  }
+</script>
+{% endblock %}
